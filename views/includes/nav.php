@@ -10,11 +10,10 @@
         <!-- Nav -->
         <nav id="nav">
             <ul>
-                <li class="current"><a href="/">How It Works</a></li>
-                <li><a href="#tips">Tips</a></li>
+                <li class="current"><a href="/#about">How It Works</a></li>
+<!--                <li><a href="/#tips">Tips</a></li>-->
                 <li><a href="/volunteer">Become a Volunteer</a></li>
-                <li><a href="#form">Submit Abstract</a></li>
-                <li><a href="/login">Login</a></li>
+                <li><a href="/#form">Submit Abstract</a></li>
             </ul>
         </nav>
 

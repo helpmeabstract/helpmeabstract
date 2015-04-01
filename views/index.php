@@ -13,20 +13,19 @@
 						</div>
 						<div class="5u">
 							<ul>
-								<li><a href="#" class="button big icon fa-arrow-circle-right">Submit</a></li>
-								<li><a href="#" class="button alt big icon fa-question-circle">Volunteer</a></li>
+								<li><a href="#form" class="button big icon fa-arrow-circle-right">Submit</a></li>
+								<li><a href="/volunteer" class="button alt big icon fa-question-circle">Volunteer</a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
 
-
 		<!-- Main -->
-			<div id="main-wrapper">
-				<div class="container">
+			<div id="banner-wrapper">
+				<div  class="container box">
 
-					<div class="row">
+					<div class="row" id="about">
 						<div class="4u">
 
 							<!-- Sidebar -->
@@ -35,55 +34,45 @@
 										<h3>Volunteers</h3>
 										<div class="grid">
 											<div class="row no-collapse 50%">
-												<div class="6u"><a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a></div>
-												<div class="6u"><a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a></div>
-											</div>
-											<div class="row no-collapse 50%">
-												<div class="6u"><a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a></div>
-												<div class="6u"><a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a></div>
+                                                {% for volunteer in volunteers %}
+                                                    {%include "/volunteer_block.php" %}
+                                                {% endfor %}
 											</div>
 										</div>
-										<a href="/volunteers" class="button icon fa-plus-circle">More</a>
 									</section>
 								</div>
 
 						</div>
-						<div class="8u important(collapse)">
+						<div class="8u important(collapse)" style="padding-bottom: 80px">
 
 							<!-- Content -->
 								<div id="content">
 									<section class="last">
 										<h2>So what's this all about?</h2>
-										<p>This is <strong>Verti</strong>, a free and fully responsive HTML5 site template by <a href="http://html5up.net">HTML5 UP</a>.
-										Verti is released under the <a href="http://html5up.net/license">Creative Commons Attribution license</a>, so feel free to use it for any personal or commercial project you might have going on (just don't forget to credit us for the design!)</p>
-										<p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus. Praesent semper bibendum ipsum, et tristique augue fringilla eu. Vivamus id risus vel dolor auctor euismod quis eget mi. Etiam eu ante risus. Aliquam erat volutpat. Aliquam luctus mattis lectus sit amet phasellus quam turpis.</p>
+										<p>
+                                            There is no shortage of brilliant, talented developers in our industry,
+                                            but making the jump from passionate developer to show stopping speaker
+                                            is a big hurdle. We want to see new speakers at our conferences,
+                                            and so this is our effort to make that a reality.
+                                        </p>
+                                        <p>
+                                            We can't cure stage fright, or write your slides, but we can give you helpful,
+                                            constructive feedback on your abstracts, before you submit.
+                                        </p>
+                                        <p>
+                                            Submit a <a href="http://gist.github.com">gist</a> link in the form below, and
+                                            we'll get it in front of some of the best speakers in the community.
+                                        </p>
 									</section>
 								</div>
-
 						</div>
-                        <div id="form" style="background:#ff4486; width:100%; padding-bottom:100px;  margin-top:20px">
-                            <div class="8u -2u important(collapse)" style="background:#ff4486">
-                                <!-- Content -->
-                                <div id="content">
-                                        <h2 style="color:white">Submit Abstract</h2>
-                                        <form action="/submitAbstract" method="post">
-                                            <label for="name">Name</label>
-                                            <input type="text" name="name">
-                                            <label for="link">Email</label>
-                                            <input type="text" name="email">
-                                            <label for="link">Gist Link</label>
-                                            <input type="text" name="link">
-                                            <br>
-                                           <div class="row">
-                                               <div class="4u -5u">
-                                               <input type="button" value="Submit" name="submit">
-                                                   </div>
-                                           </div>
-                                        </form>
-                                    </section>
-                            </div>
-                        </div>
-					</div>
+
+<!--                        {%include "/tips.php"%}-->
+
+
+                            {%include "/abstract_form.php"%}
+
+                    </div>
 				</div>
 			</div>
 

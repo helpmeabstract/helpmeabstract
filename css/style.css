@@ -593,6 +593,11 @@
 	#banner-wrapper
 	{
 	}
+
+    .black-label label
+    {
+        color:black;
+    }
 	
 	#main-wrapper
 	{
