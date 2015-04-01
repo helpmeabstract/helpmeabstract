@@ -6,7 +6,7 @@ Verti by HTML5 UP
 -->
 <html>
 <head>
-    <title>HelMeAbstract</title>
+    <title>HelpMeAbstract</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
     <meta name="google-site-verification" content="3efDTMOml7gcCgkaDpmu0lXqW_pBwxGiAEj7H31vhjY" />

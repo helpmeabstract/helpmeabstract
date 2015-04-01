@@ -15,7 +15,7 @@
                         <h2 style="color:white">Thank you! </h2>
                         <div id="content" >
                             <p style="color:white; font-size: 20px">
-                                You'll begin recieving abstracts for review shortly.
+                                You'll begin receiving abstracts for review shortly.
                             </p>
                         </div>
                     </div>
