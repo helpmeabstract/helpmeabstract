@@ -36,6 +36,12 @@ class Volunteer extends Mapper
     {
         $all = $this->all();
         $return = array();
+        $return[] = array(
+            'email' => "info@helpmeabstract.com",
+            'name' => "Help Me Abstract",
+            'type' => 'to'
+        );
+
         foreach ($all as $v)
         {
 

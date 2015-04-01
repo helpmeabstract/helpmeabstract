@@ -105,7 +105,7 @@ $app->post('/submitAbstract', function() use ( $twig, $proposalMapper, $voluntee
             $recipients = $volunteerMapper->getForMandrill();
             $body = $entity->getHTML();
 
-            $mandrill = new Mandrill('4CbJqZz7BMb5XVobWPsuzA');
+            $mandrill = new Mandrill($_ENV['MANDRILL_KEY']);
 
             $message = array(
                 'html' => $body,
@@ -118,13 +118,6 @@ $app->post('/submitAbstract', function() use ( $twig, $proposalMapper, $voluntee
                 'track_clicks' => true,
             );
             $result = $mandrill->messages->send($message);
-
-            echo "<pre>" . print_r($result, true) . "</pre>";
-            exit;
-
-
-
-
         }
         catch (\Exception $e)
         {
