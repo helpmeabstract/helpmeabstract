@@ -58,8 +58,7 @@ class Volunteer extends Mapper
 
     public function verifyFields()
     {
-        if (!isset ($_POST['email'])  || ! !isset ($_POST['name']) )
-        {
+        if (empty($_POST['email']) && empty($_POST['email']) && empty($_POST['twitter']) && empty($_POST['github'])) {
             return array('error' => 'All Fields Are Required.');
         }
 

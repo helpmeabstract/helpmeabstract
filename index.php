@@ -49,34 +49,40 @@ $app->get('/volunteer', function () use ($twig)
 
 $app->post('/submitVolunteer', function () use ( $twig, $volunteerMapper)
 {
-    $field_error = $volunteerMapper->verifyFields();
+    $field_errors = $volunteerMapper->verifyFields();
 
-    if ( ! empty($field_errors) &&  $volunteerMapper->findByEmail($_POST['email']) == 0)
-    {
-        try{
-            $entity = $volunteerMapper->build([
-                'fullname'          => $_POST['name'],
-                'twitter_username'  => $_POST['twitter'],
-                'github_username'   => $_POST['github'],
-                'email'             => $_POST['email'],
-            ]);
+    if (empty($field_errors)) {
+        if ($volunteerMapper->findByEmail($_POST['email']) == 0) {
+            try {
+                $entity = $volunteerMapper->build([
+                    'fullname' => $_POST['name'],
+                    'twitter_username' => $_POST['twitter'],
+                    'github_username' => $_POST['github'],
+                    'email' => $_POST['email'],
+                ]);
 
-            $volunteerMapper->save($entity);
+                $volunteerMapper->save($entity);
+                echo $twig->render('volunteer_thankyou.php');
 
+            } catch (\Exception $e) {
+                $error = "uh oh, something went wrong";
+
+                echo $twig->render('volunteer.php', array('error' => $error));
+            }
         }
-        catch (\Exception $e)
+        else if (empty($field_errors))
         {
-            $error = (!empty($field_error)) ? $field_error : "uh oh, something went wrong";
-
-            echo $twig->render('volunteer.php', array('error' => $error));
+            echo $twig->render('volunteer.php', array('error' => "You're already signed up!"));
         }
     }
+
     else
     {
-        echo $twig->render('volunteer.php', array('error' => "You're already signed up!"));
+        $error = (!empty($field_error)) ? $field_error : "uh oh, something went wrong";
+
+        echo $twig->render('volunteer.php', array('error' => $error));
     }
 
-    echo $twig->render('volunteer_thankyou.php');
 });
 
 
