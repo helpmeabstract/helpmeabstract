@@ -21,7 +21,7 @@ class Proposal extends Entity
         return [
             'id'           => ['type' => 'integer', 'primary' => true, 'autoincrement' => true],
             'email'        => ['type' => 'string', 'required' => true,  'unique' => true],
-            'fullname'         => ['type' => 'string', 'required' => true],
+            'fullname'     => ['type' => 'string', 'required' => true],
             'link'         => ['type' => 'string', 'required' => true],
         ];
     }
@@ -33,7 +33,7 @@ class Proposal extends Entity
         $html .= "<b> Name: </b> ".$this->fullname."<br>";
         $html .= "<b> Email: </b> ".$this->email."<br>";
         $html .= "<b> Link: </b> <a href='".$this->link."' >Review Now</a><br><br><br>";
-        $html .= "<b> You're recieveing this email because you signed up to volunteer to review abstracts at HelpMeAbstract.com<br>";
+        $html .= "<b> You're receiving this email because you signed up to volunteer to review abstracts at HelpMeAbstract.com<br>";
 
         return $html;
     }
