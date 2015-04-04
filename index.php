@@ -109,7 +109,7 @@ $app->post('/submitAbstract', function() use ( $twig, $proposalMapper, $voluntee
 
             $message = array(
                 'html' => $body,
-                'subject' => 'Absctract Submitted For Review',
+                'subject' => 'Abstract Submitted For Review',
                 'from_email' => 'abstract@helpmeabstract.com',
                 'from_name' => 'Help Me Abstract',
                 'to' => $recipients,
