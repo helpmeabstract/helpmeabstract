@@ -14,6 +14,7 @@
                         <!-- Content -->
                         <h2 style="color:white">Thank you!</h2>
                         <h3>We've sent your abstract off for review!</h3>
+                        <h3 class="call-to-action">Wouldn't it be great if our industry was a safe place for all? Please consider supporting <a href="http://codemanifesto.com/">The Code Manifesto</a>.</h3>
                     </div>
                 </div>
             </div>

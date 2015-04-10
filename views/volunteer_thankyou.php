@@ -17,6 +17,9 @@
                             <p style="color:white; font-size: 20px">
                                 You'll begin receiving abstracts for review shortly.
                             </p>
+                            <p class="call-to-action" style="color:white; font-size: 20px">
+                                Wouldn't it be great if our industry was a safe place for all? Please consider supporting <a href="http://codemanifesto.com/">The Code Manifesto</a>.
+                            </p>
                         </div>
                     </div>
                 </div>
