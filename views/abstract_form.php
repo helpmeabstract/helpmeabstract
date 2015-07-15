@@ -20,6 +20,6 @@
                     </div>
                 </div>
             </form>
-            </section>
+            <small>Please submit your abstracts in Markdown format or ensure that lines are less than 80 chars long</small>
         </div>
     </div>
