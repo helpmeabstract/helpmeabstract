@@ -97,7 +97,8 @@ $app->post('/submitAbstract', function() use ( $twig, $proposalMapper, $voluntee
             $entity = $proposalMapper->build([
                 'fullname'             => $_POST['name'],
                 'email'            => $_POST['email'],
-                'link'             => $_POST['link']
+                'link'             => $_POST['link'],
+                'max_chars'             => $_POST['max_chars'],
             ]);
 
             $proposalMapper->save($entity);

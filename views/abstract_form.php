@@ -15,6 +15,8 @@
                 <input type="text" name="email">
                 <label for="link">Gist Link</label>
                 <input type="text" name="link">
+                <label for="max_chars">Max characters / length allowed for your abstract by the event organisers</label>
+                <input type="text" name="max_chars" maxlength="10" size="2">
 
                 <small style="color:white">
                     <i>
