@@ -1,4 +1,4 @@
-<div class="6u">
+<div class="2u">
     <div class="image fit">
         <img src="{{volunteer.profile_image}}" alt=""/>
         <h3>
