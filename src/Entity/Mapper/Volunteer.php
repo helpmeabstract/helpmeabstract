@@ -55,7 +55,6 @@ class Volunteer extends Mapper
 
     public function getAsCSV()
     {
-        return "Kayla Daniels <kayladnls@gmail.com>";
         $volunteers = $this->all();
 
         $return = ['email' => "info@helpmeabstract.com" ];
