@@ -13,8 +13,6 @@ use Spot\Mapper;
 
 class Proposal extends Mapper
 {
-
-
     public function verifyFields()
     {
         if (empty($_POST['name']) && empty($_POST['email']) || empty($_POST['link'])) {

@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kayladaniels
- * Date: 3/24/15
- * Time: 9:46 PM
- */
 
-use GuzzleHttp\Client;
+use Http\Adapter\Guzzle6\Client;
 use Spot\Config;
 use Spot\Locator;
 
@@ -24,10 +18,10 @@ Dotenv::load(__DIR__);
 
 session_start();
 
-$app = new \Slim\Slim(array(
+$app = new \Slim\Slim([
     'templates.path' => './views',
-    'debug' => true
-));
+    'debug'          => true
+]);
 
 $loader = new Twig_Loader_Filesystem(__DIR__ . '/views');
 $twig = new Twig_Environment($loader);
@@ -35,10 +29,13 @@ $twig = new Twig_Environment($loader);
 
 $cfg = new Config();
 // MySQL
-$cfg->addConnection('mysql', 'mysql://'.$_ENV['DATABASE_USER'].':'.$_ENV['DATABASE_PASSWORD'].'@localhost/helpmeabstract');
+$cfg->addConnection('mysql', 'mysql://' . $_ENV['DATABASE_USER'] . ':' . $_ENV['DATABASE_PASSWORD'] . '@localhost/helpmeabstract');
 $spot = new Locator($cfg);
+
+/** @var Kayladnls\Entity\Mapper\Volunteer $volunteerMapper */
 $volunteerMapper = $spot->mapper('Kayladnls\Entity\Volunteer');
 
+/** @var Kayladnls\Entity\Mapper\Proposal $proposalMapper */
 $proposalMapper = $spot->mapper('Kayladnls\Entity\Proposal');
 
 $app->notFound(function () use ($app) {
@@ -48,26 +45,24 @@ $app->notFound(function () use ($app) {
 $app->get('/', function () use ($twig, $volunteerMapper) {
     $volunteers = $volunteerMapper->getForHomePage();
 
-    echo $twig->render('index.php', array('volunteers' => $volunteers));
+    echo $twig->render('index.php', ['volunteers' => $volunteers]);
 });
 
-$app->get('/volunteer', function () use ($twig)
-{
+$app->get('/volunteer', function () use ($twig) {
     echo $twig->render('volunteer.php');
 });
 
-$app->post('/submitVolunteer', function () use ( $twig, $volunteerMapper)
-{
+$app->post('/submitVolunteer', function () use ($twig, $volunteerMapper) {
     $field_errors = $volunteerMapper->verifyFields();
 
     if (empty($field_errors)) {
         if ($volunteerMapper->findByEmail($_POST['email']) == 0) {
             try {
                 $entity = $volunteerMapper->build([
-                    'fullname' => $_POST['name'],
+                    'fullname'         => $_POST['name'],
                     'twitter_username' => $_POST['twitter'],
-                    'github_username' => $_POST['github'],
-                    'email' => $_POST['email'],
+                    'github_username'  => $_POST['github'],
+                    'email'            => $_POST['email'],
                 ]);
 
                 $volunteerMapper->save($entity);
@@ -76,84 +71,69 @@ $app->post('/submitVolunteer', function () use ( $twig, $volunteerMapper)
             } catch (\Exception $e) {
                 $error = "uh oh, something went wrong";
 
-                echo $twig->render('volunteer.php', array('error' => $error));
+                echo $twig->render('volunteer.php', ['error' => $error]);
+            }
+        } else {
+            if (empty($field_errors)) {
+                echo $twig->render('volunteer.php', ['error' => "You're already signed up!"]);
             }
         }
-        else if (empty($field_errors))
-        {
-            echo $twig->render('volunteer.php', array('error' => "You're already signed up!"));
-        }
-    }
-
-    else
-    {
+    } else {
         $error = (!empty($field_error)) ? $field_error : "uh oh, something went wrong";
 
-        echo $twig->render('volunteer.php', array('error' => $error));
+        echo $twig->render('volunteer.php', ['error' => $error]);
     }
 
 });
 
 
-$app->post('/submitAbstract', function() use ( $twig, $proposalMapper, $volunteerMapper){
+$app->post('/submitAbstract', function () use ($twig, $proposalMapper, $volunteerMapper) {
 
     $field_errors = $proposalMapper->verifyFields();
 
-    if ( count($field_errors) == 0 )
-    {
-        try
-        {
-            $entity = $proposalMapper->build([
-                'fullname'             => $_POST['name'],
-                'email'            => $_POST['email'],
-                'link'             => $_POST['link'],
-                'max_chars'             => $_POST['max_chars'],
+    if (count($field_errors) == 0) {
+        try {
+            $proposal = $proposalMapper->build([
+                'fullname'  => $_POST['name'],
+                'email'     => $_POST['email'],
+                'link'      => $_POST['link'],
+                'max_chars' => $_POST['max_chars'],
             ]);
+            $proposalMapper->save($proposal);
 
-            $proposalMapper->save($entity);
+            $recipients = $volunteerMapper->getAsCSV();
+            $body = $proposal->getHTML();
 
-            $recipients = $volunteerMapper->getForMandrill();
-            $body = $entity->getHTML();
+            $client = new Client();
+            $mailgun = new \Mailgun\Mailgun($_ENV['MAILGUN_KEY'], $client);
 
-            $mandrill = new Mandrill($_ENV['MANDRILL_KEY']);
+            $message = [
+                'html'    => $body,
+                'subject' => 'Abstract Submitted For Review by ' . $proposal->fullname,
+                'from'    => 'Help Me Abstract <abstract@helpmeabstract.com>',
+                'to'      => $recipients
+            ];
 
-            $message = array(
-                'html' => $body,
-                'subject' => 'Abstract Submitted For Review',
-                'from_email' => 'abstract@helpmeabstract.com',
-                'from_name' => 'Help Me Abstract',
-                'to' => $recipients,
-                'important' => false,
-                'track_opens' => true,
-                'track_clicks' => true,
-            );
-            $result = $mandrill->messages->send($message);
-        }
-        catch (\Exception $e)
-        {
+            $result = $mailgun->sendMessage("helpmeabstract.com", $message);
 
-            echo "<pre>" . print_r($e->__toString(), true) . "</pre>";
-            exit;
+        } catch (\Exception $e) {
             $error = (!empty($field_error)) ? $field_error : "uh oh, something went wrong";
 
-            echo $twig->render('index.php', array('error' => $error));
+            echo $twig->render('index.php', ['error' => $error]);
         }
 
         echo $twig->render('abstract_thankyou.php');
-    }
-    else
-    {
-        $error =  $field_errors['error'];
+    } else {
+        $error = $field_errors['error'];
 
-        echo $twig->render('abstract_error.php', array('error' => $error));
+        echo $twig->render('abstract_error.php', ['error' => $error]);
     }
 
 
 });
 
 
-
-$app->get('/error', function(){
+$app->get('/error', function () {
 
 });
 

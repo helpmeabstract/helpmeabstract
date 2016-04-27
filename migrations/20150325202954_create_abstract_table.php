@@ -15,13 +15,13 @@ class CreateAbstractTable extends AbstractMigration
      */
     public function change()
     {
-
         // create the table
         $table = $this->table('abstracts');
         $table->addColumn('email', 'string', array('limit' => 100))
             ->addColumn('fullname', 'string', array('limit' => 100))
             ->addColumn('link', 'string', array('limit' => 100))
             ->addColumn('is_responded_to', 'integer')
+            ->addColumn('max_chars', 'integer')
             ->create();
     }
 
