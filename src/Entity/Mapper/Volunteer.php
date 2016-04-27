@@ -57,13 +57,12 @@ class Volunteer extends Mapper
     {
         $volunteers = $this->all();
 
-        $return = ['email' => "info@helpmeabstract.com" ];
-
+        $return = [];
         foreach ($volunteers as $volunteer) {
-            $return[] = $volunteer->fullname.' <'.$volunteer->email.'>';
+            $return[] = $volunteer->fullname.' <"'.$volunteer->email.'"">';
         }
 
-        return implode(',', $volunteers);
+        return implode(',', $return);
     }
 
     public function findByEmail($email)
