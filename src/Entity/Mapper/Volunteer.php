@@ -7,6 +7,7 @@
  */
 
 namespace Kayladnls\Entity\Mapper;
+
 use Spot\Mapper;
 
 
@@ -20,10 +21,9 @@ class Volunteer extends Mapper
     public function getForHomePage()
     {
         $all = $this->all();
-        $return = array();
-        foreach ($all as $volunteer)
-        {
-            $volunteer->profile_image = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( $volunteer->email ) ) ). "?s=150";
+        $return = [];
+        foreach ($all as $volunteer) {
+            $volunteer->profile_image = "http://www.gravatar.com/avatar/" . md5(strtolower(trim($volunteer->email))) . "?s=150";
 
             $return[] = $volunteer;
         }
@@ -35,25 +35,35 @@ class Volunteer extends Mapper
     public function getForMandrill()
     {
         $all = $this->all();
-        $return = array();
-        $return[] = array(
+        $return = [];
+        $return[] = [
             'email' => "info@helpmeabstract.com",
-            'name' => "Help Me Abstract",
-            'type' => 'to'
-        );
+            'name'  => "Help Me Abstract",
+            'type'  => 'to'
+        ];
 
-        foreach ($all as $v)
-        {
-
-            $return[] = array(
+        foreach ($all as $v) {
+            $return[] = [
                 'email' => $v->email,
-                    'name' => $v->fullname,
-                    'type' => 'bcc'
-                );
+                'name'  => $v->fullname,
+                'type'  => 'bcc'
+            ];
         }
 
         return $return;
+    }
 
+    public function getAsCSV()
+    {
+        $volunteers = $this->all();
+
+        $return = ['email' => "info@helpmeabstract.com" ];
+
+        foreach ($volunteers as $volunteer) {
+            $return[] = $volunteer->fullname.' <'.$volunteer->email.'>';
+        }
+
+        return implode(',', $volunteers);
     }
 
     public function findByEmail($email)
@@ -65,10 +75,10 @@ class Volunteer extends Mapper
     public function verifyFields()
     {
         if (empty($_POST['email']) && empty($_POST['email']) && empty($_POST['twitter']) && empty($_POST['github'])) {
-            return array('error' => 'All Fields Are Required.');
+            return ['error' => 'All Fields Are Required.'];
         }
 
-        return array();
+        return [];
 
     }
 
