@@ -59,7 +59,7 @@ class Volunteer extends Mapper
 
         $return = [];
         foreach ($volunteers as $volunteer) {
-            $return[] = $volunteer->fullname.' <"'.$volunteer->email.'"">';
+            $return[] = $volunteer->email;
         }
 
         return implode(',', $return);
