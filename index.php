@@ -111,7 +111,8 @@ $app->post('/submitAbstract', function () use ($twig, $proposalMapper, $voluntee
                 'html'    => $body,
                 'subject' => 'Abstract Submitted For Review by ' . $proposal->fullname,
                 'from'    => 'Help Me Abstract <abstract@helpmeabstract.com>',
-                'bcc'      => $recipients
+                'to'      => "abstract@helpmeabstract.com",
+                'bcc' => $recipients
             ];
 
             $result = $mailgun->sendMessage("helpmeabstract.com", $message);
