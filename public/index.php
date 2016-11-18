@@ -19,11 +19,11 @@ Dotenv::load(__DIR__.'/../');
 session_start();
 
 $app = new \Slim\Slim([
-    'templates.path' => '../views',
+    'templates.path' => __DIR__.'/../views',
     'debug'          => false
 ]);
 
-$loader = new Twig_Loader_Filesystem(__DIR__ . '/views');
+$loader = new Twig_Loader_Filesystem(__DIR__ . '/../views');
 $twig = new Twig_Environment($loader);
 
 
