@@ -10,20 +10,18 @@
     "slim/slim": "dev-master",
     "vlucas/phpdotenv": "~1.1@dev",
     "twig/twig": "~2.0@dev",
-    "guzzlehttp/guzzle": "^6.0.0",
     "robmorgan/phinx": "dev-master",
     "vlucas/spot2": "dev-master",
-    "mailgun/mailgun-php": "^2.0",
-    "php-http/guzzle6-adapter": "^1.0"
+    "aws/aws-sdk-php": "^3.35"
   },
   "authors": [
     {
-      "name": "Kayla Daniels",
-      "email": "kayladnls@gmail.com"
+      "name": "Graham Daniels",
+      "email": "greydnls@gmail.com"
     }
   ],
   "autoload": {
-    "psr-4": { "Kayladnls\\": "src/" }
+    "psr-4": { "HelpMeAbstract\\": "src/" }
   },
   "minimum-stability": "stable"
 }
