@@ -6,7 +6,7 @@
  * Time: 8:29 PM
  */
 
-namespace Kayladnls\Entity\Mapper;
+namespace HelpMeAbstract\Entity\Mapper;
 
 use Spot\Mapper;
 
@@ -32,37 +32,20 @@ class Volunteer extends Mapper
 
     }
 
-    public function getForMandrill()
-    {
-        $all = $this->all();
-        $return = [];
-        $return[] = [
-            'email' => "info@helpmeabstract.com",
-            'name'  => "Help Me Abstract",
-            'type'  => 'to'
-        ];
-
-        foreach ($all as $v) {
-            $return[] = [
-                'email' => $v->email,
-                'name'  => $v->fullname,
-                'type'  => 'bcc'
-            ];
-        }
-
-        return $return;
-    }
-
-    public function getAsCSV()
+    public function getAllForEmail()
     {
         $volunteers = $this->all();
 
         $return = [];
         foreach ($volunteers as $volunteer) {
-            $return[] = $volunteer->email;
+            $return[] =
+                [
+                    'emailAddress' => $volunteer->email,
+                    'name' => $volunteer->fullname
+                ];
         }
 
-        return implode(',', $return);
+        return $return;
     }
 
     public function findByEmail($email)
@@ -73,11 +56,9 @@ class Volunteer extends Mapper
 
     public function verifyFields()
     {
-        if (empty($_POST['email']) && empty($_POST['email']) && empty($_POST['twitter']) && empty($_POST['github'])) {
-            return ['error' => 'All Fields Are Required.'];
-        }
-
-        return [];
+        return (empty($_POST['email']) && empty($_POST['email']) && empty($_POST['twitter']) && empty($_POST['github']))
+            ? ['error' => 'All Fields Are Required.']
+            : [];
 
     }
 

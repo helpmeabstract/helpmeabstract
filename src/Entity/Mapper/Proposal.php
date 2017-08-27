@@ -6,7 +6,7 @@
  * Time: 8:29 PM
  */
 
-namespace Kayladnls\Entity\Mapper;
+namespace HelpMeAbstract\Entity\Mapper;
 
 use Spot\Mapper;
 
