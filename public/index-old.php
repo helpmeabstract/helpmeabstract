@@ -1,6 +1,6 @@
 <?php
 
-use Aws\Sqs\SqsClient;
+use Aws\Lambda\LambdaClient;
 use Spot\Config;
 use Spot\Locator;
 
@@ -105,27 +105,26 @@ $app->post('/submitAbstract', function () use ($twig, $proposalMapper, $voluntee
             $proposalMapper->save($proposal);
 
             $recipients = $volunteerMapper->getAllForEmail();
-            $client = new SqsClient([
+            $client = new LambdaClient([
                 'credentials' => [
                     'key' => getenv('ACCESS_KEY'),
                     'secret' => getenv('AWS_SECRET'),
                 ]
             ]);
 
-            $client->sendMessage([
-                'MessageBody' => json_encode(
-                    [
-                        'recipients' => $recipients,
-                        'templateName' => 'volunteer_new_abstract',
-                        'templateData' => [
-                           'abstract' => [
-                               'url' => $proposal->link,
-                               'author' => $proposal->fullname
-                           ]
+            $client->invoke([
+                'FunctionName' => 'hma-notifications-send-mass-email',
+                'InvocationType' => 'Event',
+                'Payload' => json_encode([
+                    'recipients' => $recipients,
+                    'templateName' => 'volunteer_new_abstract',
+                    'templateData' => [
+                        'abstract' => [
+                            'url' => $proposal->link,
+                            'author' => $proposal->fullname
                         ]
                     ]
-                ),
-                'QueueUrl' => getenv('SQS_QUEUE_URL')
+                ])
             ]);
 
         } catch (\Exception $e) {
