@@ -1,6 +1,6 @@
 <?php
 
-use Http\Adapter\Guzzle6\Client;
+use GuzzleHttp\Client;
 use Spot\Config;
 use Spot\Locator;
 
@@ -14,13 +14,13 @@ if (php_sapi_name() === 'cli-server') {
 }
 
 require_once(__DIR__ . '/../vendor/autoload.php');
-Dotenv::load(__DIR__.'/../');
+Dotenv::load(__DIR__ . '/../');
 
 session_start();
 
 $app = new \Slim\Slim([
-    'templates.path' => __DIR__.'/../views',
-    'debug'          => false
+    'templates.path' => __DIR__ . '/../views',
+    'debug' => false
 ]);
 
 $loader = new Twig_Loader_Filesystem(__DIR__ . '/../views');
@@ -28,15 +28,18 @@ $twig = new Twig_Environment($loader);
 
 
 $cfg = new Config();
-// MySQL
-$cfg->addConnection('mysql', 'mysql://' . $_ENV['DATABASE_USER'] . ':' . $_ENV['DATABASE_PASSWORD'] . '@localhost/helpmeabstract');
+$cfg->addConnection(
+    'mysql',
+    'mysql://' . $_ENV['DATABASE_USER'] . ':' . $_ENV['DATABASE_PASSWORD'] . '@localhost/helpmeabstract'
+);
+
 $spot = new Locator($cfg);
 
-/** @var Kayladnls\Entity\Mapper\Volunteer $volunteerMapper */
-$volunteerMapper = $spot->mapper('Kayladnls\Entity\Volunteer');
+/** @var HelpMeAbstract\Entity\Mapper\Volunteer $volunteerMapper */
+$volunteerMapper = $spot->mapper('HelpMeAbstract\Entity\Volunteer');
 
-/** @var Kayladnls\Entity\Mapper\Proposal $proposalMapper */
-$proposalMapper = $spot->mapper('Kayladnls\Entity\Proposal');
+/** @var HelpMeAbstract\Entity\Mapper\Proposal $proposalMapper */
+$proposalMapper = $spot->mapper('HelpMeAbstract\Entity\Proposal');
 
 $app->notFound(function () use ($app) {
     $app->redirect('/error');
@@ -59,10 +62,10 @@ $app->post('/submitVolunteer', function () use ($twig, $volunteerMapper) {
         if ($volunteerMapper->findByEmail($_POST['email']) == 0) {
             try {
                 $entity = $volunteerMapper->build([
-                    'fullname'         => $_POST['name'],
+                    'fullname' => $_POST['name'],
                     'twitter_username' => $_POST['twitter'],
-                    'github_username'  => $_POST['github'],
-                    'email'            => $_POST['email'],
+                    'github_username' => $_POST['github'],
+                    'email' => $_POST['email'],
                 ]);
 
                 $volunteerMapper->save($entity);
@@ -94,14 +97,15 @@ $app->post('/submitAbstract', function () use ($twig, $proposalMapper, $voluntee
     if (count($field_errors) == 0) {
         try {
             $proposal = $proposalMapper->build([
-                'fullname'  => $_POST['name'],
-                'email'     => $_POST['email'],
-                'link'      => $_POST['link'],
+                'fullname' => $_POST['name'],
+                'email' => $_POST['email'],
+                'link' => $_POST['link'],
                 'max_chars' => $_POST['max_chars'],
             ]);
+
             $proposalMapper->save($proposal);
 
-            $recipients = $volunteerMapper->getAsCSV();
+            $recipients = $volunteerMapper->getAsCsv();
             $body = $proposal->getHTML();
 
             $client = new Client();
@@ -115,22 +119,22 @@ $app->post('/submitAbstract', function () use ($twig, $proposalMapper, $voluntee
                 'bcc' => $recipients
             ];
 
-            $result = $mailgun->sendMessage("helpmeabstract.com", $message);
+            $mailgun->sendMessage("helpmeabstract.com", $message);
 
         } catch (\Exception $e) {
             $error = (!empty($field_error)) ? $field_error : "uh oh, something went wrong";
 
             echo $twig->render('index.php', ['error' => $error]);
+            return;
         }
 
         echo $twig->render('abstract_thankyou.php');
-    } else {
-        $error = $field_errors['error'];
-
-        echo $twig->render('abstract_error.php', ['error' => $error]);
+        return;
     }
 
-
+    $error = $field_errors['error'];
+    echo $twig->render('abstract_error.php', ['error' => $error]);
+    return;
 });
 
 
