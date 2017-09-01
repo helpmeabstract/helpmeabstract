@@ -1,18 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kayladaniels
- * Date: 3/25/15
- * Time: 8:26 PM
- */
 
-namespace Kayladnls\Entity;
+namespace HelpMeAbstract\Entity;
 
 use Spot\Entity;
 
 class Proposal extends Entity
 {
-    protected static $mapper = 'Kayladnls\Entity\Mapper\Proposal';
+    protected static $mapper = 'HelpMeAbstract\Entity\Mapper\Proposal';
 
     protected static $table = 'abstracts';
 

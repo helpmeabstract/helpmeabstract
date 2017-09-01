@@ -20,7 +20,7 @@ session_start();
 
 $app = new \Slim\Slim([
     'templates.path' => __DIR__ . '/../views',
-    'debug' => false
+    'debug' => true
 ]);
 
 $loader = new Twig_Loader_Filesystem(__DIR__ . '/../views');
