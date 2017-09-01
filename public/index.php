@@ -1,6 +1,6 @@
 <?php
 
-use Aws\Sqs\SqsClient;
+use GuzzleHttp\Client;
 use Spot\Config;
 use Spot\Locator;
 
@@ -102,46 +102,39 @@ $app->post('/submitAbstract', function () use ($twig, $proposalMapper, $voluntee
                 'link' => $_POST['link'],
                 'max_chars' => $_POST['max_chars'],
             ]);
+
             $proposalMapper->save($proposal);
 
-            $recipients = $volunteerMapper->getAllForEmail();
-            $client = new SqsClient([
-                'credentials' => [
-                    'key' => getenv('ACCESS_KEY'),
-                    'secret' => getenv('AWS_SECRET'),
-                ]
-            ]);
+            $recipients = $volunteerMapper->getAsCsv();
+            $body = $proposal->getHTML();
 
-            $client->sendMessage([
-                'MessageBody' => json_encode(
-                    [
-                        'recipients' => $recipients,
-                        'templateName' => 'volunteer_new_abstract',
-                        'templateData' => [
-                           'abstract' => [
-                               'url' => $proposal->link,
-                               'author' => $proposal->fullname
-                           ]
-                        ]
-                    ]
-                ),
-                'QueueUrl' => getenv('SQS_QUEUE_URL')
-            ]);
+            $client = new Client();
+            $mailgun = new \Mailgun\Mailgun($_ENV['MAILGUN_KEY'], $client);
+
+            $message = [
+                'html'    => $body,
+                'subject' => 'Abstract Submitted For Review by ' . $proposal->fullname,
+                'from'    => 'Help Me Abstract <abstract@helpmeabstract.com>',
+                'to'      => "abstract@helpmeabstract.com",
+                'bcc' => $recipients
+            ];
+
+            $mailgun->sendMessage("helpmeabstract.com", $message);
 
         } catch (\Exception $e) {
             $error = (!empty($field_error)) ? $field_error : "uh oh, something went wrong";
 
             echo $twig->render('index.php', ['error' => $error]);
+            return;
         }
 
         echo $twig->render('abstract_thankyou.php');
-    } else {
-        $error = $field_errors['error'];
-
-        echo $twig->render('abstract_error.php', ['error' => $error]);
+        return;
     }
 
-
+    $error = $field_errors['error'];
+    echo $twig->render('abstract_error.php', ['error' => $error]);
+    return;
 });
 
 

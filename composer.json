@@ -12,7 +12,8 @@
     "twig/twig": "~2.0@dev",
     "robmorgan/phinx": "dev-master",
     "vlucas/spot2": "dev-master",
-    "aws/aws-sdk-php": "^3.35"
+    "aws/aws-sdk-php": "^3.35",
+    "mailgun/mailgun-php": "^2.3"
   },
   "authors": [
     {
