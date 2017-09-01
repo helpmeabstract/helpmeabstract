@@ -18,12 +18,12 @@
   },
   "authors": [
     {
-      "name": "Kayla Daniels",
-      "email": "kayladnls@gmail.com"
+      "name": "Graham Daniels",
+      "email": "greydnls@gmail.com"
     }
   ],
   "autoload": {
-    "psr-4": { "Kayladnls\\": "src/" }
+    "psr-4": { "HelpMeAbstract\\": "src/" }
   },
   "minimum-stability": "stable"
 }

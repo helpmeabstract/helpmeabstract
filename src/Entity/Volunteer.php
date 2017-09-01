@@ -6,13 +6,13 @@
  * Time: 8:26 PM
  */
 
-namespace Kayladnls\Entity;
+namespace HelpMeAbstract\Entity;
 
 use Spot\Entity;
 
 class Volunteer extends Entity
 {
-    protected static $mapper = 'Kayladnls\Entity\Mapper\Volunteer';
+    protected static $mapper = 'HelpMeAbstract\Entity\Mapper\Volunteer';
     protected static $table = 'volunteers';
 
     public static function fields()
