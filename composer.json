@@ -14,7 +14,9 @@
     "robmorgan/phinx": "dev-master",
     "vlucas/spot2": "^2.1.7",
     "mailgun/mailgun-php": "^2.0",
-    "php-http/guzzle6-adapter": "^1.0"
+    "php-http/guzzle6-adapter": "^1.0",
+    "doctrine/dbal": "2.4",
+    "doctrine/annotations": "1.2.7"
   },
   "authors": [
     {
