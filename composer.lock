@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "081b3de47fad3da6d0e4b88ad3f52c6d",
-    "content-hash": "160a3f8a06276812df3da7e12955b79a",
+    "hash": "ab90d9ec8008f84254215ee7757cce3f",
+    "content-hash": "e39e170c67c0bc2cd9120fba569053b3",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -975,12 +975,12 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/robmorgan/phinx.git",
-                "reference": "9ff3463d2e739fb4e4e6d8cfc4b3f8c8f6bd9654"
+                "url": "https://github.com/cakephp/phinx.git",
+                "reference": "17ec9828b8bcc05f35f83b95f991776e45753d6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/robmorgan/phinx/zipball/9ff3463d2e739fb4e4e6d8cfc4b3f8c8f6bd9654",
+                "url": "https://api.github.com/repos/cakephp/phinx/zipball/17ec9828b8bcc05f35f83b95f991776e45753d6f",
                 "reference": "9ff3463d2e739fb4e4e6d8cfc4b3f8c8f6bd9654",
                 "shasum": ""
             },
@@ -1030,7 +1030,7 @@
                 "migrations",
                 "phinx"
             ],
-            "time": "2015-07-04 11:04:55"
+            "time": "2017-08-31 08:28:30"
         },
         {
             "name": "sabre/event",
@@ -1395,30 +1395,38 @@
         },
         {
             "name": "twig/twig",
-            "version": "dev-master",
+            "version": "v1.34.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "4e58c4811acbb3b471efc2d94a0d3851ab9059d5"
+                "reference": "f878bab48edb66ad9c6ed626bf817f60c6c096ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/4e58c4811acbb3b471efc2d94a0d3851ab9059d5",
-                "reference": "4e58c4811acbb3b471efc2d94a0d3851ab9059d5",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/f878bab48edb66ad9c6ed626bf817f60c6c096ee",
+                "reference": "f878bab48edb66ad9c6ed626bf817f60c6c096ee",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.0"
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "psr/container": "^1.0",
+                "symfony/debug": "~2.7",
+                "symfony/phpunit-bridge": "~3.3@dev"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "1.34-dev"
                 }
             },
             "autoload": {
                 "psr-0": {
                     "Twig_": "lib/"
+                },
+                "psr-4": {
+                    "Twig\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1448,7 +1456,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-07-07 07:46:15"
+            "time": "2017-07-04 13:19:31"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -1501,12 +1509,12 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/vlucas/spot2.git",
-                "reference": "df497f42232741c27443ccc9a96dd0550fa410f7"
+                "url": "https://github.com/spotorm/spot2.git",
+                "reference": "dc7613ac9efbd0ababf43a4ae5ff34ef3532fabf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/spot2/zipball/df497f42232741c27443ccc9a96dd0550fa410f7",
+                "url": "https://api.github.com/repos/spotorm/spot2/zipball/dc7613ac9efbd0ababf43a4ae5ff34ef3532fabf",
                 "reference": "df497f42232741c27443ccc9a96dd0550fa410f7",
                 "shasum": ""
             },
@@ -1549,7 +1557,7 @@
                 "model",
                 "orm"
             ],
-            "time": "2015-07-13 21:00:53"
+            "time": "2017-08-01 14:51:50"
         },
         {
             "name": "vlucas/valitron",
@@ -1604,7 +1612,6 @@
     "stability-flags": {
         "slim/slim": 20,
         "vlucas/phpdotenv": 20,
-        "twig/twig": 20,
         "robmorgan/phinx": 20,
         "vlucas/spot2": 20
     },
