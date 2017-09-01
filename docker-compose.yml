@@ -1,0 +1,14 @@
+version: '2'
+services:
+  app:
+    image: php:5.5-apache
+    environment:
+      - ENV=development
+    volumes:
+      - ./.env:/var/www/.env
+      - ./src:/var/www/src
+      - ./views:/var/www/views
+      - ./vendor:/var/www/vendor
+      - ./public:/var/www/html
+    ports:
+      - "7777:80"
