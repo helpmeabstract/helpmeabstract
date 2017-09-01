@@ -9,7 +9,8 @@
   "require": {
     "slim/slim": "dev-master",
     "vlucas/phpdotenv": "~1.1@dev",
-    "twig/twig": "~2.0@dev",
+    "twig/twig": "^1.34.4",
+    "guzzlehttp/guzzle": "^6.0.0",
     "robmorgan/phinx": "dev-master",
     "vlucas/spot2": "dev-master",
     "aws/aws-sdk-php": "^3.35",

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b640d0542235ec506b884e10606e2698",
-    "content-hash": "e8e64b33e16811356aaf3da0ebd99d64",
+    "hash": "ab90d9ec8008f84254215ee7757cce3f",
+    "content-hash": "e39e170c67c0bc2cd9120fba569053b3",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1409,12 +1409,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/phinx.git",
-                "reference": "c391135bf918366aa28251272734aa89d56be6af"
+                "reference": "17ec9828b8bcc05f35f83b95f991776e45753d6f"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/cakephp/phinx/zipball/17ec9828b8bcc05f35f83b95f991776e45753d6f",
-                "reference": "c391135bf918366aa28251272734aa89d56be6af",
+                "reference": "9ff3463d2e739fb4e4e6d8cfc4b3f8c8f6bd9654",
                 "shasum": ""
             },
             "require": {
@@ -1471,7 +1471,7 @@
                 "migrations",
                 "phinx"
             ],
-            "time": "2017-08-25 21:08:39"
+            "time": "2017-08-31 08:28:30"
         },
         {
             "name": "sabre/event",
@@ -1976,21 +1976,20 @@
         },
         {
             "name": "twig/twig",
-            "version": "2.x-dev",
+            "version": "v1.34.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "103cae817d68b56ddcb50c051a6ed7980d746409"
+                "reference": "f878bab48edb66ad9c6ed626bf817f60c6c096ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/103cae817d68b56ddcb50c051a6ed7980d746409",
-                "reference": "103cae817d68b56ddcb50c051a6ed7980d746409",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/f878bab48edb66ad9c6ed626bf817f60c6c096ee",
+                "reference": "f878bab48edb66ad9c6ed626bf817f60c6c096ee",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0",
-                "symfony/polyfill-mbstring": "~1.0"
+                "php": ">=5.3.3"
             },
             "require-dev": {
                 "psr/container": "^1.0",
@@ -2000,7 +1999,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4-dev"
+                    "dev-master": "1.34-dev"
                 }
             },
             "autoload": {
@@ -2038,7 +2037,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-08-19 17:43:10"
+            "time": "2017-07-04 13:19:31"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -2097,7 +2096,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/spotorm/spot2/zipball/dc7613ac9efbd0ababf43a4ae5ff34ef3532fabf",
-                "reference": "dc7613ac9efbd0ababf43a4ae5ff34ef3532fabf",
+                "reference": "df497f42232741c27443ccc9a96dd0550fa410f7",
                 "shasum": ""
             },
             "require": {
@@ -2244,7 +2243,6 @@
     "stability-flags": {
         "slim/slim": 20,
         "vlucas/phpdotenv": 20,
-        "twig/twig": 20,
         "robmorgan/phinx": 20,
         "vlucas/spot2": 20
     },
