@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ab90d9ec8008f84254215ee7757cce3f",
-    "content-hash": "e39e170c67c0bc2cd9120fba569053b3",
+    "hash": "647047f4a3698957d38fd233b7045340",
+    "content-hash": "e7a28d1b100df420fc2b84fb2ad33641",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1085,23 +1085,24 @@
         },
         {
             "name": "slim/slim",
-            "version": "dev-master",
+            "version": "2.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slimphp/Slim.git",
-                "reference": "f2868820476a80323a468b1ba054c82d9419b7bd"
+                "reference": "9224ed81ac1c412881e8d762755e3d76ebf580c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slimphp/Slim/zipball/f2868820476a80323a468b1ba054c82d9419b7bd",
-                "reference": "f2868820476a80323a468b1ba054c82d9419b7bd",
+                "url": "https://api.github.com/repos/slimphp/Slim/zipball/9224ed81ac1c412881e8d762755e3d76ebf580c0",
+                "reference": "9224ed81ac1c412881e8d762755e3d76ebf580c0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
             "suggest": {
-                "ext-mcrypt": "Required for HTTP cookie encryption"
+                "ext-mcrypt": "Required for HTTP cookie encryption",
+                "phpseclib/mcrypt_compat": "Polyfil for mcrypt extension"
             },
             "type": "library",
             "autoload": {
@@ -1127,7 +1128,7 @@
                 "rest",
                 "router"
             ],
-            "time": "2015-03-15 20:09:06"
+            "time": "2017-01-07 12:21:41"
         },
         {
             "name": "symfony/config",
@@ -1506,16 +1507,16 @@
         },
         {
             "name": "vlucas/spot2",
-            "version": "dev-master",
+            "version": "v2.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spotorm/spot2.git",
-                "reference": "dc7613ac9efbd0ababf43a4ae5ff34ef3532fabf"
+                "reference": "420ac453e22d23a8a3971339b45b2229f40e9de7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spotorm/spot2/zipball/dc7613ac9efbd0ababf43a4ae5ff34ef3532fabf",
-                "reference": "df497f42232741c27443ccc9a96dd0550fa410f7",
+                "url": "https://api.github.com/repos/spotorm/spot2/zipball/420ac453e22d23a8a3971339b45b2229f40e9de7",
+                "reference": "420ac453e22d23a8a3971339b45b2229f40e9de7",
                 "shasum": ""
             },
             "require": {
@@ -1557,7 +1558,7 @@
                 "model",
                 "orm"
             ],
-            "time": "2017-08-01 14:51:50"
+            "time": "2015-09-09 21:19:26"
         },
         {
             "name": "vlucas/valitron",
@@ -1610,10 +1611,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "slim/slim": 20,
         "vlucas/phpdotenv": 20,
-        "robmorgan/phinx": 20,
-        "vlucas/spot2": 20
+        "robmorgan/phinx": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
