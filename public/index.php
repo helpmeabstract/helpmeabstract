@@ -1,6 +1,6 @@
 <?php
 
-use GuzzleHttp\Client;
+use Http\Adapter\Guzzle6\Client;
 use Spot\Config;
 use Spot\Locator;
 
