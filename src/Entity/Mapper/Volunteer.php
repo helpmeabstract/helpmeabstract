@@ -32,6 +32,11 @@ class Volunteer extends Mapper
 
     }
 
+    public function getAsCSV()
+    {
+        return implode(',', $this->all()->toArray('email'));
+    }
+
     public function getAllForEmail()
     {
         $volunteers = $this->all();
