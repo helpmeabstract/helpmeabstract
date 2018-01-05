@@ -18,6 +18,6 @@ environments:
         host: localhost
         name: helpmeabstract
         user: root
-        pass: 'secret'
+        pass: ''
         port: 3306
         charset: utf8

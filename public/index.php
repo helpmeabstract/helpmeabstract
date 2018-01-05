@@ -30,7 +30,7 @@ $twig = new Twig_Environment($loader);
 $cfg = new Config();
 $cfg->addConnection(
     'mysql',
-    'mysql://' . $_ENV['DATABASE_USER'] . ':' . $_ENV['DATABASE_PASSWORD'] . '@localhost/helpmeabstract'
+    'mysql://' . $_ENV['DATABASE_USER'] . ':' . $_ENV['DATABASE_PASSWORD'] . '@localhost/' . $_ENV['DATABASE_NAME']
 );
 
 $spot = new Locator($cfg);
