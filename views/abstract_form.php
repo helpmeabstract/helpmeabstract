@@ -7,6 +7,11 @@
             <h3><i class="fa fa-exclamation-triangle"></i>{{error}}</h3>
             {% endif %}
             <h2 style="color:white">Submit Abstract</h2>
+            <blockquote style="color:white">
+                Please submit your abstracts in <strong>Markdown</strong> format or ensure that lines are less than 80 chars long.
+                If you wish to receive emails when your gists are commented on, consider signing up for
+                <a href="https://giscus.co/" target="_blank" style="color: white">Giscus</a>.
+            </blockquote>
 
             <form action="/submitAbstract" method="post">
                 <label for="name">Name</label>
@@ -18,11 +23,6 @@
                 <label for="max_chars">Max characters / length allowed for your abstract by the event organisers</label>
                 <input type="text" name="max_chars" maxlength="10" size="2">
 
-                <small style="color:white">
-                    <i>
-                        * Please submit your abstracts in Markdown format or ensure that lines are less than 80 chars long
-                    </i>
-                </small>
                 <br>
                 <br>
                 <div class="row">
