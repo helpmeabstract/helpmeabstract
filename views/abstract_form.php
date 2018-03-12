@@ -15,19 +15,19 @@
 
             <form action="/submitAbstract" method="post">
                 <label for="name">Name</label>
-                <input type="text" name="name">
+                <input type="text" name="name" id="name">
                 <label for="link">Email</label>
-                <input type="text" name="email">
+                <input type="text" name="email" id="email">
                 <label for="link">Gist Link</label>
-                <input type="text" name="link">
+                <input type="text" name="link" id="link">
                 <label for="max_chars">Max characters / length allowed for your abstract by the event organisers</label>
-                <input type="text" name="max_chars" maxlength="10" size="2">
+                <input type="text" name="max_chars" maxlength="10" size="2" id="max_chars">
 
                 <br>
                 <br>
                 <div class="row">
                     <div class="4u -5u">
-                        <input type="submit" value="Submit" name="submit">
+                        <input type="submit" value="Submit" name="submit" id="submit">
                     </div>
                 </div>
             </form>
