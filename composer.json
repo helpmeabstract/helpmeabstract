@@ -27,5 +27,10 @@
   "autoload": {
     "psr-4": { "HelpMeAbstract\\": "src/" }
   },
-  "minimum-stability": "stable"
+  "minimum-stability": "stable",
+  "scripts": {
+    "post-install-cmd": [
+        "@php -r \"file_exists('.env') || copy('.env.changeme', '.env');\""
+    ]
+  }
 }
