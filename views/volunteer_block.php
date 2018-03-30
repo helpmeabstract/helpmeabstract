@@ -1,8 +1,7 @@
 <div class="2u">
     <div class="image fit">
         <img src="{{volunteer.profile_image}}" alt=""/>
-        <h3>
-            {{volunteer.fullname}}
+        <h3 class="social-handles">
             {% if volunteer.twitter_username %}
             <a href="http://twitter.com/{{ volunteer.twitter_username }}">
                 <i class="fa fa-twitter"></i>
