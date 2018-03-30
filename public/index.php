@@ -30,7 +30,7 @@ $twig = new Twig_Environment($loader);
 $cfg = new Config();
 $cfg->addConnection(
     'mysql',
-    'mysql://' . $_ENV['DATABASE_USER'] . ':' . $_ENV['DATABASE_PASSWORD'] . '@localhost/' . $_ENV['DATABASE_NAME']
+    'mysql://' . $_ENV['DATABASE_USER'] . ':' . $_ENV['DATABASE_PASSWORD'] . '@'.$_ENV['DATABASE_HOST'].'/' . $_ENV['DATABASE_NAME']
 );
 
 $spot = new Locator($cfg);
@@ -59,7 +59,7 @@ $app->post('/submitVolunteer', function () use ($twig, $volunteerMapper) {
     $field_errors = $volunteerMapper->verifyFields();
 
     if (empty($field_errors)) {
-        if ($volunteerMapper->findByEmail($_POST['email']) == 0) {
+        if ($volunteerMapper->where(['email' => $_POST['email']])->count() == 0) {
             try {
                 $entity = $volunteerMapper->build([
                     'fullname' => $_POST['name'],
