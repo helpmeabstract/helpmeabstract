@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class CreateAbstractTable extends AbstractMigration
+class AddTitle extends AbstractMigration
 {
     /**
      * Change Method.
@@ -17,10 +17,7 @@ class CreateAbstractTable extends AbstractMigration
     {
         // create the table
         $table = $this->table('abstracts');
-        $table->addColumn('email', 'string', array('limit' => 100))
-            ->addColumn('fullname', 'string', array('limit' => 100))
-            ->addColumn('link', 'string', array('limit' => 100))
-            ->addColumn('max_chars', 'integer', ['null' => true])
+        $table->addColumn('title', 'string')
             ->save();
     }
 

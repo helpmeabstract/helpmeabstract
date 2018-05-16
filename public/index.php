@@ -100,14 +100,14 @@ $app->post('/submitAbstract', function () use ($twig, $proposalMapper, $voluntee
                 'fullname' => $_POST['name'],
                 'email' => $_POST['email'],
                 'link' => $_POST['link'],
-                'max_chars' => $_POST['max_chars'],
+                'title' => $_POST['title'],
+                'max_chars' => $_POST['max_chars'] !== '' ? $_POST['max_chars'] : null,
             ]);
 
             $proposalMapper->save($proposal);
 
             $recipients = $volunteerMapper->getAsCsv();
             $body = $proposal->getHTML();
-
             $client = new Client();
             $mailgun = new \Mailgun\Mailgun($_ENV['MAILGUN_KEY'], $client);
 

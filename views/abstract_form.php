@@ -18,6 +18,8 @@
                 <input type="text" name="name" id="name">
                 <label for="link">Email</label>
                 <input type="text" name="email" id="email">
+                <label for="title">Abstract Title</label>
+                <input type="text" name="title" id="title">
                 <label for="link">Gist Link</label>
                 <input type="text" name="link" id="link">
                 <label for="max_chars">Max characters / length allowed for your abstract by the event organisers</label>
