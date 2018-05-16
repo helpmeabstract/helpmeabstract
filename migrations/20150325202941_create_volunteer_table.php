@@ -25,6 +25,6 @@ class CreateVolunteerTable extends AbstractMigration
             ->addColumn('profile_image', 'string', array('limit' => 100))
             ->addColumn('profile_url', 'string', array('limit' => 100))
             ->addColumn('twitter_username', 'string', array('limit' => 100))
-            ->create();
+            ->save();
     }
 }

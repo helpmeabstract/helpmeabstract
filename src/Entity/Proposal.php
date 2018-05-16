@@ -17,7 +17,8 @@ class Proposal extends Entity
             'email'     => ['type' => 'string', 'required' => true, 'unique' => true],
             'fullname'  => ['type' => 'string', 'required' => true],
             'link'      => ['type' => 'string', 'required' => true],
-            'max_chars' => ['type' => 'integer', 'required' => false]
+            'max_chars' => ['type' => 'integer', 'required' => false],
+            'title'     => ['type' => 'string', 'required' => false]
         ];
     }
 
@@ -26,6 +27,7 @@ class Proposal extends Entity
         $html = "<h3>Abstract Submitted</h3>";
         $html .= "<b> Name: </b> " . $this->fullname . "<br>";
         $html .= "<b> Email: </b> " . $this->email . "<br>";
+        $html .= "<b> Title: </b>". $this->title ."<br>";
         $html .= "<b> Link: </b> <a href='" . $this->link . "' >Review Now</a><br><br><br>";
         $html .= "<b> You're receiving this email because you signed up to volunteer to review abstracts at HelpMeAbstract.com<br>";
 
